@@ -16,12 +16,14 @@ import { AuthService } from './services/auth.service';
 import { AuthGuardService } from './services/auth-guard.service';
 import { VinsService } from './services/vins.service';
 
-const appRoutes: Routes =[
-  {path:'auth/signup',  component:SignupComponent},
-  {path:'auth/signin',  component:SigninComponent},
-  {path:'vins',  component:VinListComponent},
-  {path:'vins/new',  component:VinFormComponent},
-  {path:'vins/view/:id',  component:SingleVinComponent}
+const appRoutes: Routes = [
+  {path: 'auth/signup',  component: SignupComponent},
+  {path: 'auth/signin',  component: SigninComponent},
+  {path: 'vins', canActivate: [AuthGuardService], component: VinListComponent},
+  {path: 'vins/new', canActivate: [AuthGuardService],  component: VinFormComponent},
+  {path: 'vins/view/:id', canActivate: [AuthGuardService], component: SingleVinComponent},
+  { path: '', redirectTo: 'vins', pathMatch: 'full' },
+  { path: '**', redirectTo: 'vins' }
 ];
 
 @NgModule({
