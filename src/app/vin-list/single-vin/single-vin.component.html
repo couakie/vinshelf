@@ -1,3 +1,11 @@
-<p>
-  single-vin works!
-</p>
+<div class="row">
+  <div class="col-xs-12">
+    <h1>{{ vin.title }}</h1>
+    <h3>{{ vin.annee }}</h3>
+    <p>{{ vin.anneeMax }}</p>
+    <p>{{ vin.region }}</p>
+    <p>{{ vin.nbre }}</p>
+    <p>{{ vin.type }}</p>
+    <button class="btn btn-default" (click)="onBack()">Retour</button>
+  </div>
+</div>

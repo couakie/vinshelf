@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Vin } from 'src/app/models/vin.model';
+import { ActivatedRoute, Router } from '@angular/router';
+import { VinsService } from 'src/app/services/vins.service';
 
 @Component({
   selector: 'app-single-vin',
@@ -7,9 +10,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SingleVinComponent implements OnInit {
 
-  constructor() { }
+  vin: Vin;
+
+  constructor(private route: ActivatedRoute, private vinsService: VinsService,
+              private router: Router) {}
 
   ngOnInit() {
+    this.vin = new Vin('', '', '', '', '', '');
+    const id = this.route.snapshot.params.id;
+    this.vinsService.getSingleVin(+id).then(
+      (vin: Vin) => {
+        this.vin = vin;
+      }
+    );
+  }
+
+  onBack() {
+    this.router.navigate(['/vins']);
   }
 
 }

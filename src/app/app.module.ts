@@ -23,7 +23,7 @@ const appRoutes: Routes = [
   {path: 'vins/new', canActivate: [AuthGuardService],  component: VinFormComponent},
   {path: 'vins/view/:id', canActivate: [AuthGuardService], component: SingleVinComponent},
   { path: '', redirectTo: 'vins', pathMatch: 'full' },
-  { path: '**', redirectTo: 'vins' }
+  { path: '**', redirectTo: 'auth/signin' }
 ];
 
 @NgModule({

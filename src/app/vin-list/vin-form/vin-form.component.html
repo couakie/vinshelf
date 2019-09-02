@@ -1,3 +1,41 @@
-<p>
-  vin-form works!
-</p>
+<div class="row">
+  <div class="col-sm-8 col-sm-offset-2">
+    <h2>Enregistrer un nouveau vin</h2>
+    <form [formGroup]="vinForm" (ngSubmit)="onSaveVin()">
+      <div class="form-group">
+        <label for="nbre">nombre de bouteille</label>
+        <input type="text" id="nbre"
+                class="form-control" formControlName="nbre">
+      </div>
+      <div class="form-group">
+        <label for="title">Titre</label>
+        <input type="text" id="title"
+               class="form-control" formControlName="title">
+      </div>
+      <div class="form-group">
+        <label for="annee">Année</label>
+        <input type="text" id="annee"
+               class="form-control" formControlName="annee">
+      </div>
+      <div class="form-group">
+        <label for="anneeMax">boire avant </label>
+        <input type="text" id="anneeMax"
+                  class="form-control" formControlName="anneeMax">
+      </div>
+      <div class="form-group">
+        <label for="region">Région</label>
+        <input type="text" id="region"
+               class="form-control" formControlName="region">
+      </div>
+      <div class="form-group">
+        <label for="type">couleur du vin</label>
+        <input type="text" id="type"
+                  class="form-control" formControlName="type">
+      </div>
+      <button class="btn btn-success" [disabled]="vinForm.invalid"
+              type="submit">Enregistrer
+      </button>
+
+    </form>
+  </div>
+</div>

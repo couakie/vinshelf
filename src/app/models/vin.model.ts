@@ -1,6 +1,7 @@
 export class Vin {
     photo: string;
     synopsis: string;
-    constructor(public title: string, public annee: string, public anneeMax: string, public region: string) {
+    constructor(public title: string, public annee: string,
+                public anneeMax: string, public region: string, public nbre: string, public type: string) {
     }
   }

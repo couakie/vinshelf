@@ -24,8 +24,8 @@ export class VinsService {
 
   getVins() {
     firebase.database().ref('/vins').on('value', function(dataSnapshot) {
-      this.books = dataSnapshot.val() ? dataSnapshot.val() : [];
-      this.emitBooks();
+      this.vins = dataSnapshot.val() ? dataSnapshot.val() : [];
+      this.emitVins();
     });
   }
 
@@ -43,16 +43,16 @@ export class VinsService {
     );
   }
 
-  createNewBook(newVin: Vin) {
+  createNewVin(newVin: Vin) {
     this.vins.push(newVin);
     this.saveVins();
     this.emitVins();
   }
 
-  removeBook(vin: Vin) {
+  removeVin(vin: Vin) {
     const vinIndexToRemove = this.vins.findIndex(
       (vinEl) => {
-        if(vinEl === vin) {
+        if (vinEl === vin) {
           return true;
         }
       }
