@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Vin } from '../models/vin.model';
 import { Subject } from 'rxjs/internal/Subject';
 import * as firebase from 'firebase';
+import Datasnapshot = firebase.database.DataSnapshot;
 
 @Injectable({
   providedIn: 'root'
@@ -23,10 +24,13 @@ export class VinsService {
   }
 
   getVins() {
-    firebase.database().ref('/vins').on('value', function(dataSnapshot) {
-      this.vins = dataSnapshot.val() ? dataSnapshot.val() : [];
-      this.emitVins();
-    });
+    firebase.database().ref('/vins')
+      .on('value', (data: Datasnapshot) => {
+          this.vins = data.val() ? data.val() : [];
+          // tslint:disable-next-line: no-unused-expression
+          this.emitVins;
+        }
+      );
   }
 
   getSingleVin(id: number) {
