@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
+import { DataTablesModule } from 'angular-datatables';
 
 import { AppComponent } from './app.component';
 import { SignupComponent } from './auth/signup/signup.component';
@@ -15,14 +16,16 @@ import { HeaderComponent } from './header/header.component';
 import { AuthService } from './services/auth.service';
 import { AuthGuardService } from './services/auth-guard.service';
 import { VinsService } from './services/vins.service';
+import { TestComponent } from './test/test/test.component';
 
 const appRoutes: Routes = [
   {path: 'auth/signup',  component: SignupComponent},
   {path: 'auth/signin',  component: SigninComponent},
+  {path: 'test/test',  component: TestComponent},
   {path: 'vins', canActivate: [AuthGuardService], component: VinListComponent},
   {path: 'vins/new', canActivate: [AuthGuardService],  component: VinFormComponent},
   {path: 'vins/view/:id', canActivate: [AuthGuardService], component: SingleVinComponent},
-  { path: '', redirectTo: 'vins', pathMatch: 'full' },
+  { path: '', redirectTo: 'auth/signin', pathMatch: 'full' },
   { path: '**', redirectTo: 'auth/signin' }
 ];
 
@@ -34,7 +37,8 @@ const appRoutes: Routes = [
     VinListComponent,
     SingleVinComponent,
     VinFormComponent,
-    HeaderComponent
+    HeaderComponent,
+    TestComponent
   ],
   imports: [
     BrowserModule,
@@ -42,6 +46,7 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule.forRoot(appRoutes),
+    DataTablesModule
   ],
   providers: [
     AuthService,
